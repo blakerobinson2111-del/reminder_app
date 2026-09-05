@@ -1,0 +1,22 @@
+name = "quiet-reminders"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Runs every 5 minutes to check for due reminders and send emails.
+[triggers]
+crons = ["*/5 * * * *"]
+
+# KV namespace for storing reminders.
+# After running `wrangler kv namespace create REMINDERS`, paste the id it
+# gives you below (replace "REPLACE_WITH_KV_ID").
+[[kv_namespaces]]
+binding = "REMINDERS"
+id = "757b05fe5eac4f5ca32e7b278dc473be"
+
+[vars]
+# The "from" address used when sending. With a free Resend account and no
+# verified domain, use "onboarding@resend.dev" — but note that address can
+# only send to the email on your own Resend account, regardless of what
+# recipient you type into the app. Verify a domain in Resend (Resend > Domains)
+# to send from an address like reminders@yourdomain.com to any recipient.
+FROM_EMAIL = "onboarding@resend.dev"
